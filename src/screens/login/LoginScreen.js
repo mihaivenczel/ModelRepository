@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {View, Image, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import {LOGIN_SAGA} from './redux';
 import {RoundedButton, FieldInput} from '../../core/components';
-import {logo} from '../../core/themes';
 import {strings} from '../../core/constants';
 import {colors} from '../../core/themes';
 import {LoginScreenStyles} from './styles';
