@@ -24,7 +24,7 @@ const MainStackNavigator = () => (
       />
       <Stack.Screen
         screenOptions={defaultNavigationOptions}
-        name={roots.menuscreen}
+        name={roots.menuScreen}
         component={MenuScreen}
       />
     </Stack.Navigator>

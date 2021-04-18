@@ -1,6 +1,6 @@
 const roots = {
   loginScreen: 'LoginScreen',
-  menuscreen: 'MenuScreen',
+  menuScreen: 'MenuScreen',
 };
 
 export default roots;

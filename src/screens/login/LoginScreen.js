@@ -6,6 +6,7 @@ import {RoundedButton, FieldInput} from '../../core/components';
 import {strings} from '../../core/constants';
 import {colors} from '../../core/themes';
 import {LoginScreenStyles} from './styles';
+import {getModelObjFile} from '../../core/api/model';
 
 const LoginScreen = ({login, message, isFetchingToken, navigation}) => {
   const [email, setEmail] = useState();
@@ -50,6 +51,12 @@ const LoginScreen = ({login, message, isFetchingToken, navigation}) => {
           navigation.navigate('MenuScreen');
         }}
       />
+      <RoundedButton
+        text="api call test"
+        onPress={() => {
+          getModelObjFile();
+        }}
+      />
     </View>
   );
 };
@@ -64,6 +71,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  null,
+  null,
 )(LoginScreen);

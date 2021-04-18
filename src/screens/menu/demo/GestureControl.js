@@ -38,22 +38,20 @@ export default class GestureControl extends Component {
 
   render() {
     let {rotateZ, rotateX, fromXY} = this.state;
-
+    const modelURI = "chair2.obj";
     return (
       <AnimatedModelView
-        model={{
-          uri: 'chair2.obj',
-        }}
+        model={{uri:modelURI}}
         texture={{uri: 'chair2.png'}}
         onStartShouldSetResponder={() => true}
         onResponderRelease={this.onMoveEnd}
         onResponderMove={this.onMove}
         animate={!!fromXY}
         tint={{r: 1.0, g: 1.0, b: 1.0, a: 1.0}}
-        scale={1.2}
+        scale={0.2}
         rotateX={rotateX}
         rotateZ={rotateZ}
-        translateZ={-15}
+        translateZ={-200}
         style={styles.container}
       />
     );
