@@ -1,1 +1,1 @@
-export const BASE_DEV_URL = 'localhost:3000';
+export const BASE_DEV_URL = 'http://0.0.0.0:3000';

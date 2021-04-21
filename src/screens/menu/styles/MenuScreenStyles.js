@@ -20,10 +20,25 @@ export default (styles = StyleSheet.create({
     flex: 1,
     zIndex: 1,
   },
+
+  image: {
+    width: 100,
+    height: 100,
+  },
+  menuOption: {
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'red',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'lightblue',
+  },
   menu: {
     flex: 1,
     paddingTop: 15,
-    paddingLeft: 40,
+    paddingHorizontal: 40,
     backgroundColor: '#fff',
   },
   backButton: {

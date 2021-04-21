@@ -1,9 +1,11 @@
 import BASE_DEV_URL from '../constants/url';
 import axios from 'axios';
-
+const headers = {
+  'Content-Type': 'application/json',
+};
 export const getModelObjFile = async () =>
   axios
-    .get(`${BASE_DEV_URL}`)
+    .get('https://whispering-gorge-69497.herokuapp.com/', {headers})
     // .get('https://jsonplaceholder.typicode.com/todos/1')
     .then(response => {
       alert(JSON.stringify(response));
