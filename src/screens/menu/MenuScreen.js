@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {View, ScrollView, TouchableOpacity, Text, Image} from 'react-native';
 
 import GestureControl from './demo/GestureControl';
-import Multiple from './demo/Multiple';
+import Animations from './demo/Animations';
 import {MenuScreenStyles as styles} from './styles';
+import {images} from '../../core/images';
 
 export default class example extends Component {
   state = {
@@ -39,7 +40,7 @@ export default class example extends Component {
 
     const examples = [
       {component: GestureControl, info: 'Chair 1'},
-      {component: GestureControl, info: 'Chair 2'},
+      {component: Animations, info: 'Chair 2'},
       {component: GestureControl, info: 'Chair 3'},
       {component: GestureControl, info: 'Sofa 1'},
       {component: GestureControl, info: 'Sofa 2'},
@@ -58,13 +59,7 @@ export default class example extends Component {
               key={example.info}>
               <View style={styles.menuOption}>
                 <Text style={styles.button}>{title}</Text>
-                <Image
-                  style={styles.image}
-                  source={{
-                    uri:
-                      'https://www.oakworld.co.uk/wp-content/uploads/2018/09/Alston-Oak-Dining-Chair-64334-64283.jpg',
-                  }}
-                />
+                <Image style={styles.image} source={images.OldChair} />
               </View>
             </TouchableOpacity>
           );
