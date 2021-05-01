@@ -47,9 +47,10 @@ export default (styles = StyleSheet.create({
     width: 30,
   },
   headerTitle: {
+    flex: 1,
     color: 'white',
     fontSize: 20,
-    flex: 1,
+
     textAlign: 'center',
   },
   button: {

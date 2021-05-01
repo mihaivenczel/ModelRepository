@@ -1,7 +1,8 @@
 const roots = {
   loginScreen: 'LoginScreen',
-  menuScreen: 'MenuScreen',
+  menuScreenFunctional: 'MenuScreenFunctional',
   overviewScreen: 'OverviewScreen',
+  gestureScreen: 'GestureControl',
 };
 
 export default roots;

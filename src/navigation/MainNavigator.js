@@ -4,6 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {roots} from '.';
 import {LoginScreen} from '../screens/login';
 import {MenuScreen} from '../screens/menu';
+import GestureControl from '../screens/menu/demo/GestureControl';
+import MenuScreenFunctional from '../screens/menu/MenuScreenFunctional';
 
 const Stack = createStackNavigator();
 
@@ -24,8 +26,13 @@ const MainStackNavigator = () => (
       />
       <Stack.Screen
         screenOptions={defaultNavigationOptions}
-        name={roots.menuScreen}
-        component={MenuScreen}
+        name={roots.menuScreenFunctional}
+        component={MenuScreenFunctional}
+      />
+      <Stack.Screen
+        screenOptions={defaultNavigationOptions}
+        name={roots.gestureScreen}
+        component={GestureControl}
       />
     </Stack.Navigator>
   </NavigationContainer>

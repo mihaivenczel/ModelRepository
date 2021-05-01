@@ -48,7 +48,7 @@ const LoginScreen = ({login, message, isFetchingToken, navigation}) => {
       <RoundedButton
         text={strings.skip}
         onPress={() => {
-          navigation.navigate('MenuScreen');
+          navigation.navigate('MenuScreenFunctional');
         }}
       />
       <RoundedButton

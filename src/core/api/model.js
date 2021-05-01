@@ -5,8 +5,9 @@ const headers = {
 };
 export const getModelObjFile = async () =>
   axios
-    .get('https://whispering-gorge-69497.herokuapp.com/', {headers})
-    // .get('https://jsonplaceholder.typicode.com/todos/1')
+    // .get('https://whispering-gorge-69497.herokuapp.com/',   {headers})
+  
+    .get('https://jsonplaceholder.cypress.io/todos/1')
     .then(response => {
       alert(JSON.stringify(response));
       console.log(response, 'data');

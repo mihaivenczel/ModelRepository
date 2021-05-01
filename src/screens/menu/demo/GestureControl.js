@@ -7,6 +7,7 @@ const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
 export default class GestureControl extends Component {
   constructor() {
     super();
+
     this.state = {
       zoom: -10,
       rotateX: new Animated.Value(-90),
@@ -15,6 +16,7 @@ export default class GestureControl extends Component {
       fromXY: undefined,
       valueXY: undefined,
       valueZ: undefined,
+      modelURI: undefined,
     };
   }
 
@@ -58,14 +60,20 @@ export default class GestureControl extends Component {
     );
   }
 
+  componentWillMount() {
+    const {route} = this.props;
+    console.log(typeof route.params.modelURI, 'model');
+    this.state.modelURI = route.params.modelURI;
+  }
+
   render() {
-    let {rotateZ, rotateX, fromXY, translateZ} = this.state;
-    const modelURI = 'chair2.obj';
+    let {rotateZ, rotateX, fromXY, translateZ, modelURI} = this.state;
+
     return (
       <View style={{flex: 1}}>
         <AnimatedModelView
           model={{uri: modelURI}}
-          texture={{uri: 'chair2.png'}}
+          // texture={{uri: 'chair2.png'}}
           onStartShouldSetResponder={() => true}
           onResponderRelease={this.onMoveEnd}
           onResponderMove={this.onMove}

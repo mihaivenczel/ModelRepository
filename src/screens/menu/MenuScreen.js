@@ -9,10 +9,13 @@ import {images} from '../../core/images';
 export default class example extends Component {
   state = {
     example: undefined,
+    component: undefined,
+    fileName: undefined,
   };
 
-  select(example) {
-    this.setState({example});
+  select({example, component, fileName}) {
+    console.log(fileName, 'file');
+    this.setState({example, component, fileName});
   }
 
   render() {
@@ -25,6 +28,11 @@ export default class example extends Component {
             </TouchableOpacity>
           )}
           <Text style={styles.headerTitle}>ModelRepository</Text>
+          <View>
+            <TouchableOpacity>
+              <Text>Settings</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.body}>{this.renderContent()}</View>
@@ -35,30 +43,68 @@ export default class example extends Component {
   renderContent() {
     if (this.state.example) {
       const Example = this.state.example;
-      return <Example />;
+      return <Example modelURI={fileName} />;
     }
 
     const examples = [
-      {component: GestureControl, info: 'Chair 1'},
-      {component: Animations, info: 'Chair 2'},
-      {component: GestureControl, info: 'Chair 3'},
-      {component: GestureControl, info: 'Sofa 1'},
-      {component: GestureControl, info: 'Sofa 2'},
-      {component: GestureControl, info: 'Sofa 3'},
-      {component: GestureControl, info: 'Misc 1'},
-      {component: GestureControl, info: 'Misc 2'},
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
+      {
+        title: 'Chair 1',
+        description: 'Lorem ipsum sit amet',
+        fileName: 'chair2.obj',
+      },
     ];
 
     return (
       <ScrollView style={styles.menu}>
-        {examples.map((example, i) => {
-          const title = example.info;
+        {examples.map((item, i) => {
+          {
+          }
           return (
             <TouchableOpacity
-              onPress={this.select.bind(this, example.component)}
-              key={example.info}>
+              onPress={this.select.bind(this, GestureControl, item.fileName)}
+              key={item.title}>
               <View style={styles.menuOption}>
-                <Text style={styles.button}>{title}</Text>
+                <Text style={styles.button}>{item.title}</Text>
                 <Image style={styles.image} source={images.OldChair} />
               </View>
             </TouchableOpacity>
