@@ -21,11 +21,16 @@ export default (styles = StyleSheet.create({
     zIndex: 1,
   },
 
-  image: {
+  imageGridView: {
+    width: 100,
+    height: 100,
+    marginTop: 5,
+  },
+  imageListView: {
     width: 100,
     height: 100,
   },
-  menuOption: {
+  menuOptionList: {
     flex: 1,
     marginTop: 10,
     marginBottom: 20,
@@ -34,6 +39,12 @@ export default (styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'lightblue',
+  },
+  menuOptionGrid: {
+    flex: 1,
+    backgroundColor: 'red',
+    margin: 10,
+    borderWidth: 1,
   },
   menu: {
     flex: 1,
