@@ -9,6 +9,8 @@ import {
   FlatList,
 } from 'react-native';
 
+import filter from 'lodash.filter';
+
 import {MenuScreenStyles as styles} from './styles';
 import {images} from '../../core/images';
 
@@ -91,8 +93,58 @@ const searchModelByfileName = (searchedTerm, fileName) => {
 
 const MenuScreenFunctional = ({navigation}) => {
   const [itemViewList, setItemViewList] = useState(true);
+
   const [modal, setModal] = useState(false);
   const [modalSearch, setModalSearch] = useState('');
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  const [fullData, setFullData] = useState([]);
+
+  const renderHeader = () => {
+    return (
+      <View
+        style={{
+          backgroundColor: '#fff',
+          padding: 10,
+          marginVertical: 10,
+          borderRadius: 20,
+        }}>
+        <TextInput
+          autoCapitalize="none"
+          autoCorrect={false}
+          clearButtonMode="always"
+          value={modalSearch}
+          onChangeText={test => handleSearch(test)}
+          placeholder="Search"
+          style={{backgroundColor: '#fff', paddingHorizontal: 20}}
+        />
+      </View>
+    );
+  };
+
+  const handleSearch = text => {
+    const formattedQuery = text.toLowerCase();
+    const filteredData = filter(examples, fileName => {
+      return contains(fileName, formattedQuery);
+    });
+    setData(filteredData);
+    setModalSearch(text);
+  };
+
+  const contains = query => {
+    if (
+      first.includes(query) ||
+      last.includes(query) ||
+      email.includes(query)
+    ) {
+      return true;
+    }
+
+    return false;
+  };
 
   return (
     <View style={styles.container}>
@@ -120,7 +172,7 @@ const MenuScreenFunctional = ({navigation}) => {
             <TextInput
               style={styles.modalInput}
               placeholder={'Search model by filename'}
-              onTextInput={text => setModalSearch(text)}
+              onChangeText={text => handleSearch(text)}
             />
           </View>
         ) : null}
