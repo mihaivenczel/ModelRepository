@@ -3,9 +3,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {roots} from '.';
 import {LoginScreen} from '../screens/login';
-import {MenuScreen} from '../screens/menu';
 import GestureControl from '../screens/menu/demo/GestureControl';
 import MenuScreenFunctional from '../screens/menu/MenuScreenFunctional';
+import ModelDetailsScreen from '../screens/details/ModelDetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +33,11 @@ const MainStackNavigator = () => (
         screenOptions={defaultNavigationOptions}
         name={roots.gestureScreen}
         component={GestureControl}
+      />
+      <Stack.Screen
+        screenOptions={defaultNavigationOptions}
+        name={roots.detailsScreen}
+        component={ModelDetailsScreen}
       />
     </Stack.Navigator>
   </NavigationContainer>
