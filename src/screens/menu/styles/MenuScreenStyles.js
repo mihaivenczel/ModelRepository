@@ -4,7 +4,6 @@ import {metrics} from '../../../core/themes/';
 export default (styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch',
     backgroundColor: 'white',
   },
   header: {
@@ -38,18 +37,20 @@ export default (styles = StyleSheet.create({
   menuOptionList: {
     flex: 1,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: 'red',
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'lightblue',
   },
-  menuOptionGrid: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 5,
+
+  listObjectContainer: {
+    paddingHorizontal: 10,
+    alignContent: 'center',
+  },
+  listObject: {
+    marginHorizontal: 2,
   },
   modalInput: {
     borderWidth: 1,
@@ -64,7 +65,7 @@ export default (styles = StyleSheet.create({
   menu: {
     flex: 1,
     paddingTop: 15,
-    paddingHorizontal: 40,
+    paddingHorizontal: 30,
     backgroundColor: '#fff',
   },
   backButton: {
@@ -79,7 +80,7 @@ export default (styles = StyleSheet.create({
 
     textAlign: 'center',
   },
-  button: {
+  text: {
     color: '#333',
     fontSize: 20,
     marginBottom: 24,

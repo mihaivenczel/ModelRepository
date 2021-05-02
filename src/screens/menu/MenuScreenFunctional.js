@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   TextInput,
+  FlatList,
 } from 'react-native';
 
 import {MenuScreenStyles as styles} from './styles';
@@ -75,10 +76,21 @@ const examples = [
     fileName: 'chair2.obj',
     tag: 'scaun',
   },
+  {
+    id: 9,
+    title: 'Chair 1',
+    description: 'Lorem ipsum sit amet',
+    fileName: 'chair2.obj',
+    tag: 'scaun',
+  },
 ];
 
+const searchModelByfileName = (searchedTerm, fileName) => {
+  return searchedTerm === fileName ? null : null;
+};
+
 const MenuScreenFunctional = ({navigation}) => {
-  const [itemViewList, setItemViewList] = useState(false);
+  const [itemViewList, setItemViewList] = useState(true);
   const [modal, setModal] = useState(false);
   const [modalSearch, setModalSearch] = useState('');
 
@@ -116,35 +128,37 @@ const MenuScreenFunctional = ({navigation}) => {
 
       <ScrollView style={styles.menu}>
         {itemViewList === false ? (
-          <View style={styles.menuOptionGrid}>
-            {examples.map((item, i) => {
-              // modalSearch === item.fileName
-              return (
-                
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('ModelDetailsScreen', {
-                      id: item.id,
-                      title: item.title,
-                      description: item.description,
-                      fileName: item.fileName,
-                      tag: item.tag,
-                    })
-                  }
-                  key={item.id}>
-                  <Image
-                    style={styles.imageGridView}
-                    source={images.OldChair}
-                  />
-                </TouchableOpacity>
-              
-              );
-            })}
-          </View>
+          <FlatList
+            style={styles.listObjectContainer}
+            data={examples}
+            key={examples.id}
+            numColumns={3}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                style={styles.listObject}
+                onPress={() =>
+                  navigation.navigate('ModelDetailsScreen', {
+                    id: item.id,
+                    title: item.title,
+                    description: item.description,
+                    fileName: item.fileName,
+                    tag: item.tag,
+                  })
+                }>
+                <Image style={styles.imageGridView} source={images.OldChair} />
+              </TouchableOpacity>
+            )}
+          />
         ) : (
           <View>
-            {examples.map(item => {
-              return (
+            <FlatList
+              style={styles.listObjectContainer}
+              data={examples}
+              key={examples.id}
+              numColumns={1}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => (
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate('ModelDetailsScreen', {
@@ -157,15 +171,15 @@ const MenuScreenFunctional = ({navigation}) => {
                   }
                   key={item.id}>
                   <View style={styles.menuOptionList}>
-                    <Text style={styles.button}>{item.title}</Text>
+                    <Text style={styles.text}>{item.title}</Text>
                     <Image
                       style={styles.imageListView}
                       source={images.OldChair}
                     />
                   </View>
                 </TouchableOpacity>
-              );
-            })}
+              )}
+            />
           </View>
         )}
       </ScrollView>
