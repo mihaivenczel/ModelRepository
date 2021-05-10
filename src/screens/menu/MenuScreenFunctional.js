@@ -20,70 +20,81 @@ const examples = [
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'scaun',
+    category: 'mobila',
   },
   {
     id: 1,
     title: 'Sofa 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'sofa1.obj',
-    tag: 'sofa',
+    searchTag: 'sofa',
+    category: 'mobila',
   },
   {
     id: 2,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'scaun',
+    category: 'mobila',
   },
   {
     id: 3,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
+    
   },
   {
     id: 4,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
   },
   {
     id: 5,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
   },
   {
     id: 6,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
   },
   {
     id: 7,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
   },
   {
     id: 8,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
   },
   {
     id: 9,
     title: 'Chair 1',
     description: 'Lorem ipsum sit amet',
     fileName: 'chair2.obj',
-    tag: 'scaun',
+    searchTag: 'ttt',
+    category: 'mobila',
   },
 ];
 
@@ -101,49 +112,19 @@ const MenuScreenFunctional = ({navigation}) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
-  const [fullData, setFullData] = useState([]);
+  const [fullData, setFullData] = useState(examples);
+  const [filteredData, setFilteredData] = useState();
+  const [dataCopy, setDataCopy] = useState(fullData);
 
-  const renderHeader = () => {
-    return (
-      <View
-        style={{
-          backgroundColor: '#fff',
-          padding: 10,
-          marginVertical: 10,
-          borderRadius: 20,
-        }}>
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="always"
-          value={modalSearch}
-          onChangeText={test => handleSearch(test)}
-          placeholder="Search"
-          style={{backgroundColor: '#fff', paddingHorizontal: 20}}
-        />
-      </View>
-    );
-  };
-
-  const handleSearch = text => {
-    const formattedQuery = text.toLowerCase();
-    const filteredData = filter(examples, fileName => {
-      return contains(fileName, formattedQuery);
+  const handleSearch = value => {
+    const tempData = [];
+    dataCopy.map(item => {
+      console.log(item, 'item');
+      console.log(value, 'value');
+      item.searchTag.includes(value) ? tempData.push(item) : null;
     });
-    setData(filteredData);
-    setModalSearch(text);
-  };
-
-  const contains = query => {
-    if (
-      first.includes(query) ||
-      last.includes(query) ||
-      email.includes(query)
-    ) {
-      return true;
-    }
-
-    return false;
+    console.log(tempData);
+    setFilteredData(tempData);
   };
 
   return (
@@ -183,7 +164,7 @@ const MenuScreenFunctional = ({navigation}) => {
           <FlatList
             style={styles.listObjectContainer}
             data={examples}
-            key={examples.id}
+            extraData={filteredData}
             numColumns={3}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
@@ -207,7 +188,8 @@ const MenuScreenFunctional = ({navigation}) => {
             <FlatList
               style={styles.listObjectContainer}
               data={examples}
-              key={examples.id}
+              extraData={filteredData}
+
               numColumns={1}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
