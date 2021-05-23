@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   ScrollView,
@@ -9,94 +9,9 @@ import {
   FlatList,
 } from 'react-native';
 
-import filter from 'lodash.filter';
-
 import {MenuScreenStyles as styles} from './styles';
 import {images} from '../../core/images';
-
-const examples = [
-  {
-    id: 0,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'scaun',
-    category: 'mobila',
-  },
-  {
-    id: 1,
-    title: 'Sofa 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'sofa1.obj',
-    searchTag: 'sofa',
-    category: 'mobila',
-  },
-  {
-    id: 2,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'scaun',
-    category: 'mobila',
-  },
-  {
-    id: 3,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-    
-  },
-  {
-    id: 4,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-  },
-  {
-    id: 5,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-  },
-  {
-    id: 6,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-  },
-  {
-    id: 7,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-  },
-  {
-    id: 8,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-  },
-  {
-    id: 9,
-    title: 'Chair 1',
-    description: 'Lorem ipsum sit amet',
-    fileName: 'chair2.obj',
-    searchTag: 'ttt',
-    category: 'mobila',
-  },
-];
+import {getAllModels} from '../../api';
 
 const searchModelByfileName = (searchedTerm, fileName) => {
   return searchedTerm === fileName ? null : null;
@@ -104,23 +19,26 @@ const searchModelByfileName = (searchedTerm, fileName) => {
 
 const MenuScreenFunctional = ({navigation}) => {
   const [itemViewList, setItemViewList] = useState(true);
-
   const [modal, setModal] = useState(false);
-  const [modalSearch, setModalSearch] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+  const [fullData, setFullData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
-  const [fullData, setFullData] = useState(examples);
-  const [filteredData, setFilteredData] = useState();
-  const [dataCopy, setDataCopy] = useState(fullData);
+  const fetchAllModels = async () => {
+    console.log('effect');
+    const tempData = await getAllModels();
+    console.log(tempData);
+    setFullData(tempData);
+    setFilteredData(tempData);
+  };
+
+  useEffect(() => {
+    fetchAllModels();
+  }, []);
 
   const handleSearch = value => {
     const tempData = [];
-    dataCopy.map(item => {
-      console.log(item, 'item');
-      console.log(value, 'value');
+    fullData.map(item => {
       item.searchTag.includes(value) ? tempData.push(item) : null;
     });
     console.log(tempData);
@@ -163,8 +81,7 @@ const MenuScreenFunctional = ({navigation}) => {
         {itemViewList === false ? (
           <FlatList
             style={styles.listObjectContainer}
-            data={examples}
-            extraData={filteredData}
+            data={filteredData}
             numColumns={3}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
@@ -187,9 +104,7 @@ const MenuScreenFunctional = ({navigation}) => {
           <View>
             <FlatList
               style={styles.listObjectContainer}
-              data={examples}
-              extraData={filteredData}
-
+              data={filteredData}
               numColumns={1}
               keyExtractor={item => item.id}
               renderItem={({item}) => (

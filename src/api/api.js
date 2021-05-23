@@ -1,9 +1,16 @@
+import {BASE_DEV_URL} from '../core/constants/url';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://www.mocky.io/v2/5eb94bc02f000038003c2fef';
-
-// export const login = async () => {
-//   return axios.post(`${API_BASE_URL}`).then((response) => {
-//     return response;
-//   });
-// };
+export const getAllModels = async () => {
+  console.log(BASE_DEV_URL + '/models');
+  return axios
+    .get(BASE_DEV_URL + '/models')
+    .then(response => {
+      console.log(response.data, 'data');
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error, 'err');
+      return error;
+    });
+};

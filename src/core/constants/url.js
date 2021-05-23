@@ -1,1 +1,1 @@
-export const BASE_DEV_URL = 'http://0.0.0.0:3000';
+export const BASE_DEV_URL = 'https://whispering-gorge-69497.herokuapp.com';

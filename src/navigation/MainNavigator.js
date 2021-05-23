@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {roots} from '.';
-import {LoginScreen} from '../screens/login';
+import LoginScreen from '../screens/login/LoginScreen';
 import GestureControl from '../screens/menu/demo/GestureControl';
 import MenuScreenFunctional from '../screens/menu/MenuScreenFunctional';
 import ModelDetailsScreen from '../screens/details/ModelDetailsScreen';

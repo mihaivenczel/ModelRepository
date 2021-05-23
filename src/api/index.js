@@ -1,1 +1,1 @@
-export {login} from './api';
+export {getAllModels} from './api';
