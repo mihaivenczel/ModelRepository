@@ -62,8 +62,8 @@ export default class GestureControl extends Component {
 
   UNSAFE_componentWillMount() {
     const {route} = this.props;
-    console.log(typeof route.params.modelURI, 'model');
-    this.state.modelURI = route.params.modelURI;
+    console.log(typeof route.params?.modelURI, 'model');
+    this.state.modelURI = route.params?.modelURI;
   }
 
   render() {

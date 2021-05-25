@@ -4,6 +4,7 @@ const roots = {
   overviewScreen: 'OverviewScreen',
   gestureScreen: 'GestureControl',
   detailsScreen: 'ModelDetailsScreen',
+  runtimeScreen: 'RuntimeAssetsScreen',
 };
 
 export default roots;

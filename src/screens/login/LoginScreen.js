@@ -4,6 +4,7 @@ import {RoundedButton, FieldInput} from '../../core/components';
 import {strings} from '../../core/constants';
 import {colors} from '../../core/themes';
 import {LoginScreenStyles} from './styles';
+import {getModel} from '../../api';
 
 const LoginScreen = ({login, isFetchingToken, navigation}) => {
   const [email, setEmail] = useState();
@@ -46,6 +47,18 @@ const LoginScreen = ({login, isFetchingToken, navigation}) => {
         text={strings.skip}
         onPress={() => {
           navigation.navigate('MenuScreenFunctional');
+        }}
+      />
+      <RoundedButton
+        text={'go to runtime'}
+        onPress={() => {
+          navigation.navigate('RuntimeAssetsScreen');
+        }}
+      />
+      <RoundedButton
+        text={'api model'}
+        onPress={() => {
+          getModel();
         }}
       />
     </View>

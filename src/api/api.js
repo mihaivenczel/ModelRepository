@@ -14,3 +14,20 @@ export const getAllModels = async () => {
       return error;
     });
 };
+
+export const getModel = async modelName => {
+  console.log(BASE_DEV_URL + `/models/${modelName}`);
+  return (
+    axios
+      .get('https://whispering-gorge-69497.herokuapp.com/model/chair2.obj')
+      // .get(BASE_DEV_URL + `/models/${modelName}`)
+      .then(response => {
+        console.log(response, 'data');
+        return response;
+      })
+      .catch(error => {
+        console.log(error, 'err');
+        return error;
+      })
+  );
+};
