@@ -1,0 +1,1 @@
+export {getAllModels} from './api';
