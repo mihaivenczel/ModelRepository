@@ -5,17 +5,21 @@ export default StyleSheet.create({
   container: {
     flex: metrics.size1,
     backgroundColor: 'black',
-    justifyContent: 'center',
+  },
+  titleContainer: {
+    flex: metrics.size1,
+  },
+  titleText: {
+    alignSelf: 'center',
+    color: 'white',
+    fontSize: metrics.size30,
+    marginTop: metrics.size100,
+    letterSpacing: metrics.size5,
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flex: metrics.size1,
+    flexDirection: 'column',
     alignItems: 'center',
-  },
-  logo: {
-    height: metrics.size100,
-    width: metrics.size140,
-  },
-  marginTop: {
-    marginTop: metrics.size20,
-  },
-  activityIndicator: {
-    height: metrics.size50,
   },
 });

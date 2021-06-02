@@ -6,7 +6,6 @@ import LoginScreen from '../screens/login/LoginScreen';
 import RuntimeAssets from '../screens/menu/demo/RuntimeAssets';
 import MenuScreenFunctional from '../screens/menu/MenuScreenFunctional';
 import ModelDetailsScreen from '../screens/details/ModelDetailsScreen';
-import ModelDetailsFunctionalScreen from '../screens/details/ModelDetailsFunctionalScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,11 +33,6 @@ const MainStackNavigator = () => (
         screenOptions={defaultNavigationOptions}
         name={roots.detailsScreen}
         component={ModelDetailsScreen}
-      />
-      <Stack.Screen
-        screenOptions={defaultNavigationOptions}
-        name={roots.detailsFunctionalScreen}
-        component={ModelDetailsFunctionalScreen}
       />
       <Stack.Screen
         screenOptions={defaultNavigationOptions}

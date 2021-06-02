@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {metrics} from '../../../core/themes/';
 
-export default (styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -85,4 +85,22 @@ export default (styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 24,
   },
-}));
+  gridButton: {
+    width: 60,
+    height: 60,
+    position: 'absolute',
+    backgroundColor: '#346ff7',
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#346ff7',
+    bottom: 1,
+    alignSelf: 'flex-end',
+    marginBottom:30,
+    right:20,
+  },
+  gridIcon: {
+    alignSelf: 'center',
+    // justifyContent: 'center',
+    top: 8,
+  },
+});

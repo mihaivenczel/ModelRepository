@@ -12,6 +12,8 @@ import {
 import {MenuScreenStyles as styles} from './styles';
 import {images} from '../../core/images';
 import {getAllModels} from '../../api';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {roots} from '../../navigation';
 
 const searchModelByfileName = (searchedTerm, fileName) => {
   return searchedTerm === fileName ? null : null;
@@ -43,20 +45,8 @@ const MenuScreenFunctional = ({navigation}) => {
     setFilteredData(tempData);
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>ModelRepository</Text>
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              setItemViewList(prevstate => !prevstate);
-            }}>
-            <Text>Grid/List</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
+  const searchModal = () => {
+    return (
       <View style={styles.searchContainer}>
         <TouchableOpacity
           onPress={() => {
@@ -74,19 +64,28 @@ const MenuScreenFunctional = ({navigation}) => {
           </View>
         ) : null}
       </View>
+    );
+  };
 
-      <ScrollView style={styles.menu}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>ModelRepository</Text>
+      </View>
+      {searchModal()}
+      <View style={styles.menu}>
         {itemViewList === false ? (
           <FlatList
             style={styles.listObjectContainer}
             data={filteredData}
+            // ListHeaderComponent={searchModal()}
             numColumns={3}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
               <TouchableOpacity
                 style={styles.listObject}
                 onPress={() =>
-                  navigation.navigate('ModelDetailsFunctionalScreen', {
+                  navigation.navigate(roots.detailsScreen, {
                     id: item.id,
                     title: item.title,
                     description: item.description,
@@ -103,12 +102,13 @@ const MenuScreenFunctional = ({navigation}) => {
             <FlatList
               style={styles.listObjectContainer}
               data={filteredData}
+              // ListHeaderComponent={searchModal()}
               numColumns={1}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate('ModelDetailsFunctionalScreen', {
+                    navigation.navigate(roots.detailsScreen, {
                       id: item.id,
                       title: item.title,
                       description: item.description,
@@ -129,7 +129,28 @@ const MenuScreenFunctional = ({navigation}) => {
             />
           </View>
         )}
-      </ScrollView>
+      </View>
+      <TouchableOpacity
+        style={styles.gridButton}
+        onPress={() => {
+          setItemViewList(prevstate => !prevstate);
+        }}>
+        {itemViewList === true ? (
+          <MaterialCommunityIcons
+            style={styles.gridIcon}
+            name="view-grid"
+            size={40}
+            color={'#663bf5'}
+          />
+        ) : (
+          <MaterialCommunityIcons
+            style={styles.gridIcon}
+            name="format-list-bulleted"
+            size={40}
+            color={'#663bf5'}
+          />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
