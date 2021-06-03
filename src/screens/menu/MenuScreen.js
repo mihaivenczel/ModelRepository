@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   View,
-  ScrollView,
   TouchableOpacity,
   Text,
   Image,
@@ -10,18 +9,17 @@ import {
 } from 'react-native';
 
 import {MenuScreenStyles as styles} from './styles';
-import {images} from '../../core/images';
 import {getAllModels} from '../../api';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {roots} from '../../navigation';
+import {BASE_DEV_URL} from '../../core/constants/url';
 
-const searchModelByfileName = (searchedTerm, fileName) => {
-  return searchedTerm === fileName ? null : null;
-};
-
-const MenuScreenFunctional = ({navigation}) => {
+const MenuScreen = ({navigation}) => {
   const [itemViewList, setItemViewList] = useState(true);
-  const [modal, setModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showCategory, setShowCategory] = useState(false);
+
+  const [categories, setCategories] = useState([]);
 
   const [fullData, setFullData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -37,24 +35,67 @@ const MenuScreenFunctional = ({navigation}) => {
     fetchAllModels();
   }, []);
 
+  useEffect(() => {
+    pushUniqueCategories();
+  }, [fullData]);
+
+  const pushUniqueCategories = () => {
+    const tempCategoriesArr = [];
+    fullData.map(item => {
+      tempCategoriesArr.push(item.category);
+    });
+    const tempSetArr = [...new Set(tempCategoriesArr)];
+    setCategories(tempSetArr);
+  };
+
   const handleSearch = value => {
     const tempData = [];
     fullData.map(item => {
-      item.searchTag.includes(value) ? tempData.push(item) : null;
+      item.searchTag.toLowerCase().includes(value) || item.category === value
+        ? tempData.push(item)
+        : null;
     });
     setFilteredData(tempData);
   };
 
-  const searchModal = () => {
+  const showItemsInCategory = () => {
+    return (
+      <View style={styles.categoryContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            setShowCategory(prevstate => !prevstate);
+          }}>
+          <Text>Search by category</Text>
+        </TouchableOpacity>
+        {showCategory === true ? (
+          <View style={styles.categoryContainer}>
+            {categories.map(item => {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    handleSearch(item);
+                  }}
+                  style={styles.categoryObject}>
+                  <Text style={styles.categoryText}>{item}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        ) : null}
+      </View>
+    );
+  };
+
+  const showSearchModal = () => {
     return (
       <View style={styles.searchContainer}>
         <TouchableOpacity
           onPress={() => {
-            setModal(prevstate => !prevstate);
+            setShowModal(prevstate => !prevstate);
           }}>
-          <Text>Search...</Text>
+          <Text>Search by filename</Text>
         </TouchableOpacity>
-        {modal === true ? (
+        {showModal === true ? (
           <View style={styles.modalContainer}>
             <TextInput
               style={styles.modalInput}
@@ -70,15 +111,14 @@ const MenuScreenFunctional = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>ModelRepository</Text>
+        <View style={styles.headerLeft}>{showItemsInCategory()}</View>
+        <View style={styles.headerRight}>{showSearchModal()}</View>
       </View>
-      {searchModal()}
       <View style={styles.menu}>
         {itemViewList === false ? (
           <FlatList
             style={styles.listObjectContainer}
             data={filteredData}
-            // ListHeaderComponent={searchModal()}
             numColumns={3}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
@@ -93,7 +133,10 @@ const MenuScreenFunctional = ({navigation}) => {
                     tag: item.tag,
                   })
                 }>
-                <Image style={styles.imageGridView} source={images.OldChair} />
+                <Image
+                  style={styles.imageGridView}
+                  source={{uri: BASE_DEV_URL + `/model/${item.thumbnail}`}}
+                />
               </TouchableOpacity>
             )}
           />
@@ -102,7 +145,6 @@ const MenuScreenFunctional = ({navigation}) => {
             <FlatList
               style={styles.listObjectContainer}
               data={filteredData}
-              // ListHeaderComponent={searchModal()}
               numColumns={1}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
@@ -118,11 +160,17 @@ const MenuScreenFunctional = ({navigation}) => {
                   }
                   key={item.id}>
                   <View style={styles.menuOptionList}>
-                    <Text style={styles.text}>{item.title}</Text>
-                    <Image
-                      style={styles.imageListView}
-                      source={images.OldChair}
-                    />
+                    <View style={styles.menuOptionListLeft}>
+                      <Text style={styles.text}>{item.title}</Text>
+                    </View>
+                    <View style={styles.menuOptionListRight}>
+                      <Image
+                        style={styles.imageListView}
+                        source={{
+                          uri: BASE_DEV_URL + `/model/${item.thumbnail}`,
+                        }}
+                      />
+                    </View>
                   </View>
                 </TouchableOpacity>
               )}
@@ -155,4 +203,4 @@ const MenuScreenFunctional = ({navigation}) => {
   );
 };
 
-export default MenuScreenFunctional;
+export default MenuScreen;

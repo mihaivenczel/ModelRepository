@@ -10,14 +10,14 @@ import {
 import ModelView from 'react-native-gl-model-view';
 import {Buffer} from 'buffer';
 import axios from 'axios';
-import {BASE_DEV_URL} from '../../../core/constants/url';
+import {BASE_DEV_URL} from '../../core/constants/url';
 
 // XXX: This is the standard content header returned for a blob.
 const octetStreamHeader = 'data:application/octet-stream;base64,';
 
 const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
 
-export default class RuntimeAssets extends React.Component {
+export default class ModelScreen extends React.Component {
   state = {
     model: null,
     texture: null,
@@ -31,7 +31,7 @@ export default class RuntimeAssets extends React.Component {
     fromXY: undefined,
     valueXY: undefined,
     valueZ: undefined,
-    
+
     fileName: undefined,
   };
 
@@ -132,10 +132,23 @@ export default class RuntimeAssets extends React.Component {
       rotateX.setValue(valueXY[1] + (pageY - fromXY[1]) / 2);
     }
   };
+
+  renderGoBackButton() {
+    // const navigation = useNavigation();
+    const {navigation} = this.props;
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <Text style={styles.buttonText}>Go Back</Text>
+      </TouchableOpacity>
+    );
+  }
   renderButton(label, method) {
     return (
       <TouchableOpacity onPress={method}>
-        <Text style={styles.button}>{label}</Text>
+        <Text style={styles.buttonText}>{label}</Text>
       </TouchableOpacity>
     );
   }
@@ -153,6 +166,7 @@ export default class RuntimeAssets extends React.Component {
 
     return (
       <View style={{flex: 1}}>
+        {this.renderGoBackButton()}
         <AnimatedModelView
           style={{flex: 1}}
           model={modelSrc}
@@ -228,5 +242,19 @@ const styles = StyleSheet.create({
   controlText: {
     color: 'black',
     fontSize: 30,
+  },
+  buttons: {
+    height: 50,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  buttonText: {
+    padding: 5,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 15,
+    textAlign: 'center',
+    fontSize: 16,
   },
 });

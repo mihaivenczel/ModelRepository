@@ -7,21 +7,28 @@ export default styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    height: 75,
-    paddingTop: 22,
-    paddingLeft: 20,
+    height: 150,
+    paddingHorizontal: 20,
     flexDirection: 'row',
-    backgroundColor: '#5894f3',
-    alignItems: 'center',
-    zIndex: 100,
   },
+  headerLeft: {
+    flex: 1,
+  },
+  headerRight: {
+    flex: 1,
+  },
+
   body: {
     flex: 1,
-    zIndex: 1,
   },
   searchContainer: {
-    marginVertical: 30,
+    flex: 1,
     alignSelf: 'center',
+  },
+  categoryContainer: {
+    flex: 1,
+    alignContent: 'space-between',
+    flexDirection: 'column',
   },
   imageGridView: {
     width: 100,
@@ -60,7 +67,7 @@ export default styles = StyleSheet.create({
     paddingVertical: 10,
   },
   modalContainer: {
-    backgroundColor: 'transparent',
+    flex: 1,
   },
   menu: {
     flex: 1,
@@ -73,9 +80,13 @@ export default styles = StyleSheet.create({
     fontSize: 18,
     width: 30,
   },
+  categoryObject: {
+    padding: 10,
+    flexDirection: 'column',
+  },
+  categoryText: {},
   headerTitle: {
     flex: 1,
-    color: 'white',
     fontSize: 20,
 
     textAlign: 'center',
@@ -95,12 +106,15 @@ export default styles = StyleSheet.create({
     borderColor: '#346ff7',
     bottom: 1,
     alignSelf: 'flex-end',
-    marginBottom:30,
-    right:20,
+    marginBottom: 30,
+    right: 20,
   },
   gridIcon: {
     alignSelf: 'center',
     // justifyContent: 'center',
     top: 8,
+  },
+  menuOptionListLeft: {
+    padding: 20,
   },
 });

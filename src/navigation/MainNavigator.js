@@ -2,9 +2,9 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {roots} from '.';
-import LoginScreen from '../screens/login/LoginScreen';
-import RuntimeAssets from '../screens/menu/demo/RuntimeAssets';
-import MenuScreenFunctional from '../screens/menu/MenuScreenFunctional';
+import HomeScreen from '../screens/home/HomeScreen';
+import ModelScreen from '../screens/model/ModelScreen';
+import MenuScreen from '../screens/menu/MenuScreen';
 import ModelDetailsScreen from '../screens/details/ModelDetailsScreen';
 
 const Stack = createStackNavigator();
@@ -18,16 +18,16 @@ const MainStackNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator
       screenOptions={defaultNavigationOptions}
-      initialRouteName={roots.loginScreen}>
+      initialRouteName={roots.homeScreen}>
       <Stack.Screen
         screenOptions={defaultNavigationOptions}
-        name={roots.loginScreen}
-        component={LoginScreen}
+        name={roots.homeScreen}
+        component={HomeScreen}
       />
       <Stack.Screen
         screenOptions={defaultNavigationOptions}
-        name={roots.menuScreenFunctional}
-        component={MenuScreenFunctional}
+        name={roots.menuScreen}
+        component={MenuScreen}
       />
       <Stack.Screen
         screenOptions={defaultNavigationOptions}
@@ -36,8 +36,8 @@ const MainStackNavigator = () => (
       />
       <Stack.Screen
         screenOptions={defaultNavigationOptions}
-        name={roots.runtimeScreen}
-        component={RuntimeAssets}
+        name={roots.modelScreen}
+        component={ModelScreen}
       />
     </Stack.Navigator>
   </NavigationContainer>

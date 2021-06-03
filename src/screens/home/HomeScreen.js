@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 import {RoundedButton} from '../../core/components';
-import {strings} from '../../core/constants';
-import {colors} from '../../core/themes';
-import {LoginScreenStyles as styles} from './styles';
+import {roots} from '../../navigation';
 
-const LoginScreen = ({navigation}) => {
+import {HomeScreenStyles as styles} from './styles';
+
+const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -16,7 +16,7 @@ const LoginScreen = ({navigation}) => {
         <RoundedButton
           text={'Go to Menu'}
           onPress={() => {
-            navigation.navigate('MenuScreenFunctional');
+            navigation.navigate(roots.menuScreen);
           }}
         />
       </View>
@@ -24,4 +24,4 @@ const LoginScreen = ({navigation}) => {
   );
 };
 
-export default LoginScreen;
+export default HomeScreen;

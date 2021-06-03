@@ -1,8 +1,8 @@
 const roots = {
-  loginScreen: 'LoginScreen',
-  menuScreenFunctional: 'MenuScreenFunctional',
+  homeScreen: 'HomeScreen',
+  menuScreen: 'MenuScreen',
   detailsScreen: 'ModelDetailsScreen',
-  runtimeScreen: 'RuntimeAssetsScreen',
+  modelScreen: 'ModelScreen',
 };
 
 export default roots;

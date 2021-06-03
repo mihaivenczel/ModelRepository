@@ -1,8 +1,7 @@
+import React from 'react';
 import {useNavigation} from '@react-navigation/core';
-import React, {useEffect, useState} from 'react';
-import {View, ScrollView, TouchableOpacity, Text, Image} from 'react-native';
-import {getModel} from '../../api/api';
-import { roots } from '../../navigation';
+import {View, TouchableOpacity, Text} from 'react-native';
+import {roots} from '../../navigation';
 
 import {ModelDetailsStyles as styles} from './styles';
 
@@ -12,6 +11,9 @@ const ModelDetailsScreen = ({route}) => {
 
   return (
     <View style={styles.mainContainer}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text>Go back</Text>
+      </TouchableOpacity>
       <View style={styles.subContainer}>
         <View>
           <Text>Model Details</Text>
@@ -24,7 +26,7 @@ const ModelDetailsScreen = ({route}) => {
         <View style={styles.bottomContainer}>
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate(roots.runtimeScreen, {
+              navigation.navigate(roots.modelScreen, {
                 fileName: fileName,
               })
             }>
