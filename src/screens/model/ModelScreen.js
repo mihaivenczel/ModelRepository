@@ -170,7 +170,6 @@ export default class ModelScreen extends React.Component {
         <AnimatedModelView
           style={{flex: 1}}
           model={modelSrc}
-          // texture={textureSrc}
           onStartShouldSetResponder={() => true}
           onResponderRelease={this.onMoveEnd}
           onResponderMove={this.onMove}

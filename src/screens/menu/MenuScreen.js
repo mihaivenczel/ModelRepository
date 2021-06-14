@@ -26,7 +26,6 @@ const MenuScreen = ({navigation}) => {
 
   const fetchAllModels = async () => {
     const tempData = await getAllModels();
-
     setFullData(tempData);
     setFilteredData(tempData);
   };
@@ -65,7 +64,7 @@ const MenuScreen = ({navigation}) => {
           onPress={() => {
             setShowCategory(prevstate => !prevstate);
           }}>
-          <Text>Search by category</Text>
+          <Text style={styles.searchText}>Search by category</Text>
         </TouchableOpacity>
         {showCategory === true ? (
           <View style={styles.categoryContainer}>
@@ -93,7 +92,7 @@ const MenuScreen = ({navigation}) => {
           onPress={() => {
             setShowModal(prevstate => !prevstate);
           }}>
-          <Text>Search by filename</Text>
+          <Text style={styles.searchText}>Search by filename</Text>
         </TouchableOpacity>
         {showModal === true ? (
           <View style={styles.modalContainer}>

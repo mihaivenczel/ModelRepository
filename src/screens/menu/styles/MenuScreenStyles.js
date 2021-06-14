@@ -30,6 +30,9 @@ export default styles = StyleSheet.create({
     alignContent: 'space-between',
     flexDirection: 'column',
   },
+  searchText: {
+    paddingTop: 20,
+  },
   imageGridView: {
     width: 100,
     height: 100,
