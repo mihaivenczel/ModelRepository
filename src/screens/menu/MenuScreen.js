@@ -24,15 +24,15 @@ const MenuScreen = ({navigation}) => {
   const [fullData, setFullData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
+  useEffect(() => {
+    fetchAllModels();
+  }, []);
+
   const fetchAllModels = async () => {
     const tempData = await getAllModels();
     setFullData(tempData);
     setFilteredData(tempData);
   };
-
-  useEffect(() => {
-    fetchAllModels();
-  }, []);
 
   useEffect(() => {
     pushUniqueCategories();

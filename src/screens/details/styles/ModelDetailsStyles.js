@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {metrics} from '../../../core/themes/';
+import {colors, metrics} from '../../../core/themes/';
 
-export default (styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: 'white',
@@ -19,4 +19,33 @@ export default (styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: 'center',
   },
-}));
+  goBackButton: {
+    borderWidth: 1,
+    borderColor: colors.black,
+    borderRadius: 50,
+    width: '20%',
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  goBackText: {
+    fontSize: 15,
+    padding: 10,
+    alignSelf: 'center',
+  },
+  goNextButton:{
+    borderWidth: 1,
+    borderColor: colors.black,
+    borderRadius: 50,
+    // width: '20%',
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  textTitle: {
+    fontSize: 25,
+    padding: 10,
+    alignSelf: 'center',
+  },
+  text: {
+    fontSize: 16,
+  },
+});

@@ -6,31 +6,32 @@ import {roots} from '../../navigation';
 import {ModelDetailsStyles as styles} from './styles';
 
 const ModelDetailsScreen = ({route}) => {
-  const {id, title, description, fileName, tag} = route.params;
+  const {title, description, fileName} = route.params;
+
   const navigation = useNavigation();
 
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Go back</Text>
+      <TouchableOpacity
+        style={styles.goBackButton}
+        onPress={() => navigation.goBack()}>
+        <Text style={styles.goBackText}>Go back</Text>
       </TouchableOpacity>
       <View style={styles.subContainer}>
         <View>
-          <Text>Model Details</Text>
-          <Text>id: {id}</Text>
-          <Text>title: {title}</Text>
-          <Text>description: {description}</Text>
-          <Text>tag: {tag}</Text>
+          <Text style={styles.textTitle}> {title}</Text>
+          <Text style={styles.text}>{description}</Text>
         </View>
 
         <View style={styles.bottomContainer}>
           <TouchableOpacity
+          style={styles.goNextButton}
             onPress={() =>
               navigation.navigate(roots.modelScreen, {
                 fileName: fileName,
               })
             }>
-            <Text>Go to model</Text>
+            <Text style={styles.goBackText}>Go to model</Text>
           </TouchableOpacity>
         </View>
       </View>

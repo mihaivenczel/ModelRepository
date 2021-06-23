@@ -37,8 +37,7 @@ export default styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginTop: 5,
-    borderWidth: 1,
-    borderColor: 'red',
+
   },
   imageListView: {
     width: 100,
@@ -48,8 +47,6 @@ export default styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     marginBottom: 10,
-    borderWidth: 1,
-    borderColor: 'red',
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'lightblue',

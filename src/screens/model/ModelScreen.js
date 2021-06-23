@@ -37,7 +37,6 @@ export default class ModelScreen extends React.Component {
 
   UNSAFE_componentWillMount() {
     const {route} = this.props;
-    console.log(route.params, 'model');
     this.state.fileName = route.params?.fileName;
     this.fetchRequestedModel();
   }
@@ -138,10 +137,11 @@ export default class ModelScreen extends React.Component {
     const {navigation} = this.props;
     return (
       <TouchableOpacity
+        style={styles.buttonContainer}
         onPress={() => {
           navigation.goBack();
         }}>
-        <Text style={styles.buttonText}>Go Back</Text>
+        <Text style={styles.buttonText}>Go back</Text>
       </TouchableOpacity>
     );
   }
@@ -255,5 +255,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     textAlign: 'center',
     fontSize: 16,
+  },
+  buttonContainer: {
+    marginTop: 10,
+    marginHorizontal: 10,
+    width: '20%',
   },
 });
