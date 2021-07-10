@@ -32,13 +32,22 @@ export default styles = StyleSheet.create({
     padding: 10,
     alignSelf: 'center',
   },
-  goNextButton:{
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  goNextButton: {
     borderWidth: 1,
     borderColor: colors.black,
     borderRadius: 50,
     // width: '20%',
     marginTop: 10,
     marginLeft: 10,
+  },
+  gridIcon: {
+    alignSelf: 'center',
+    // justifyContent: 'center',
+    top: 8,
   },
   textTitle: {
     fontSize: 25,

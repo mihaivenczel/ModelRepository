@@ -3,20 +3,30 @@ import {useNavigation} from '@react-navigation/core';
 import {View, TouchableOpacity, Text} from 'react-native';
 import {roots} from '../../navigation';
 
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ModelDetailsStyles as styles} from './styles';
+import {deleteModel} from '../../api/api';
 
 const ModelDetailsScreen = ({route}) => {
-  const {title, description, fileName} = route.params;
-
+  const {title, description, fileName, id, refresh} = route.params;
+  console.log(id, 'id');
   const navigation = useNavigation();
-
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity
-        style={styles.goBackButton}
-        onPress={() => navigation.goBack()}>
-        <Text style={styles.goBackText}>Go back</Text>
-      </TouchableOpacity>
+      <View style={styles.headerContainer}>
+        <TouchableOpacity
+          style={styles.goBackButton}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.goBackText}>Go back</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            deleteModel(id);
+            navigation.navigate(roots.menuScreen, {refresh: !refresh});
+          }}>
+          <MaterialCommunityIcons name="delete" size={40} color={'red'} />
+        </TouchableOpacity>
+      </View>
       <View style={styles.subContainer}>
         <View>
           <Text style={styles.textTitle}> {title}</Text>
@@ -25,7 +35,7 @@ const ModelDetailsScreen = ({route}) => {
 
         <View style={styles.bottomContainer}>
           <TouchableOpacity
-          style={styles.goNextButton}
+            style={styles.goNextButton}
             onPress={() =>
               navigation.navigate(roots.modelScreen, {
                 fileName: fileName,

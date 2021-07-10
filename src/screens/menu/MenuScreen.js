@@ -14,7 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {roots} from '../../navigation';
 import {BASE_DEV_URL} from '../../core/constants/url';
 
-const MenuScreen = ({navigation}) => {
+const MenuScreen = ({navigation, route}) => {
   const [itemViewList, setItemViewList] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
@@ -24,9 +24,23 @@ const MenuScreen = ({navigation}) => {
   const [fullData, setFullData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
+  const [refresh, setRefresh] = useState(false);
+  const [refreshNumber, setRefreshNumber] = useState(0);
+
   useEffect(() => {
     fetchAllModels();
   }, []);
+
+  useEffect(() => {
+    if (refreshNumber % 2 === 0) setRefresh(true);
+    else setRefresh(false);
+    setRefreshNumber(refreshNumber + 1);
+    if (refreshNumber === 256) setRefreshNumber(0);
+  }, [route.params?.refresh]);
+
+  useEffect(() => {
+    fetchAllModels();
+  }, [refreshNumber]);
 
   const fetchAllModels = async () => {
     const tempData = await getAllModels();
@@ -49,6 +63,7 @@ const MenuScreen = ({navigation}) => {
 
   const handleSearch = value => {
     const tempData = [];
+
     fullData.map(item => {
       item.searchTag.toLowerCase().includes(value) || item.category === value
         ? tempData.push(item)
@@ -130,6 +145,7 @@ const MenuScreen = ({navigation}) => {
                     description: item.description,
                     fileName: item.fileName,
                     tag: item.tag,
+                    refresh: refresh,
                   })
                 }>
                 <Image
@@ -155,6 +171,7 @@ const MenuScreen = ({navigation}) => {
                       description: item.description,
                       fileName: item.fileName,
                       tag: item.tag,
+                      refresh: refresh,
                     })
                   }
                   key={item.id}>
